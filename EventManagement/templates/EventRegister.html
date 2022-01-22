@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Event Registration
+{% endblock %}
+
+{% block content%}
+    <form action="" method="POST">
+
+        <label> Event Name: </label>
+        <input type="text" name="Ename"><br>
+
+        <label> Event Description: </label>
+        <input type="text" name="Edesc"> <br>
+
+        <label> Event Start: </label>
+        <input type="datetime-local" name="Estart"> <br>
+
+        <label> Event End: </label>
+        <input type="datetime-local" name="Eend"> <br>
+
+        <label> Registration Deadline: </label>
+        <input type="datetime-local" name="ERegdead"> <br>
+
+        <label> Host email: </label>
+        <input type="email" name="EHmail"> <br>
+
+        <label> Host Password: </label>
+        <input type="password" name="EHpwd"> <br>
+
+        {#  <label> Event Poster: </label> #}
+        {#<input type="file" name="Eposter" accept="/image"> <br>#}
+
+        <input type="submit">
+
+
+    </form>
+{% endblock %}
