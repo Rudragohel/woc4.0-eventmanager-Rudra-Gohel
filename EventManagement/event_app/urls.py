@@ -20,4 +20,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('event_registration', views.eventreg, name='eventregister'),
     path('participant_registration', views.participantreg, name='participantregister'),
+    path('event_creation', views.create_event, name='event_creation'),
+    path('handle_create_participant/<str:Event_Name>', views.create_participant_page, name="handle_create_participant"),
+    path('participant_creation', views.create_participant, name='create participant'),
 ]

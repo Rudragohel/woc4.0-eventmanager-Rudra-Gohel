@@ -8,8 +8,9 @@ class Event(models.Model):
     EventFrom = models.DateTimeField(default=datetime.now())
     EventTo = models.DateTimeField(default=datetime.now())
     EventRegDeadline = models.DateTimeField(default=datetime.now())
-    EventPoster = models.ImageField(default='poster.jpg')
-    EventHostEmail = models.EmailField(default="",max_length=254)
+    # EventPoster = models.ImageField(default='poster.jpg')
+    EventHostEmail = models.EmailField(default="", max_length=254)
+    EventHostPwd = models.CharField(default="", max_length=70)
 
     def __str__(self):
         return self.EventName
@@ -18,9 +19,10 @@ class Event(models.Model):
 class Participant(models.Model):
     ParticipantName = models.CharField(max_length=70)
     ParticipantContact = models.CharField(max_length=10)
-    ParticipantEvent = models.CharField(max_length=2)
-    ParticipantEmail = models.EmailField(max_length=254)
-    Participantpwd = models.CharField(default="",max_length=70)
+    ParticipantEvent = models.IntegerField()
+    ParticipantEventName = models.CharField(default="", max_length=70)
+    ParticipantEmail = models.EmailField(default="", max_length=254)
+    ParticipantCount = models.IntegerField(default=1)
 
     def __str__(self):
         return self.ParticipantName

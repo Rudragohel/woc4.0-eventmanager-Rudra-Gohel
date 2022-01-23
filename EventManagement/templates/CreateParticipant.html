@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{%block title %}
+    {{ InEvent }}
+{% endblock %}
+
+{%block content %}
+    <h1> Welcome to "{{ InEvent }}" Registration </h1>
+
+     <form action="/participant_creation" method="POST">
+        {% csrf_token %}
+
+        <label> Event Name: </label>
+        <input readonly type="text" name = "PEName" value="{{ InEvent }}"><br>
+
+        <label> Participant Name: </label>
+        <input type="text" name="Pname"> <br>
+
+        <label> Contact Number: </label>
+        <input type="tel" maxlength="10" name="Pcontact"> <br>
+
+        <label> Email: </label>
+        <input type="email" name="Pmail"> <br>
+        <label>
+            Registration Type: <br>
+        </label>
+        <input type="radio" name="RegType" >
+        <label> Individual</label> <br>
+
+        <input type="radio" name="RegType" onclick="document.getElementById('Ginput').style.visibility='visible'">
+        <label> Group</label> <br>
+
+        <input type = "number" id="Ginput" name="Pnum" style="visibility: hidden" value="1"><br>
+        <input type="submit">
+
+    </form>
+{% endblock %}

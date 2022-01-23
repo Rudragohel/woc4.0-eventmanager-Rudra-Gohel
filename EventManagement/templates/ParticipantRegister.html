@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Participant Registration</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}
+    Participant Registration
+{% endblock %}
+
+{% block content%}
+
+    {% if size %}
+        {% for event in Events %}
+            <div>
+                <h2> {{  event.EventName }} </h2>
+                {{ event.EventDescription }} <br>
+                Event Starts: {{ event.EventFrom }}  <br>
+                Event Ends: {{ event.EventTo }} <br>
+                <a href="{% url 'handle_create_participant' event.EventName %}">
+                    <button>Register</button>
+                </a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h2>No Upcoming Events</h2>
+    {% endif %}
+{% endblock %}
