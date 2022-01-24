@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{%block title %}
+    Host Dashboard
+{% endblock %}
+
+{%block content %}
+    <h1> Welcome To Host Dashboard </h1>
+    <div>
+        <form action="FindEvent" method="POST">
+            {% csrf_token %}
+            <label>Enter Event Id: </label>
+            <input type="text" name="EId">
+            <br>
+            <label>Enter Host Password</label>
+            <input type="password" name="Hpassword">
+            <br>
+            <input type="submit">
+        </form>
+    </div>
+{% endblock %}

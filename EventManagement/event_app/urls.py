@@ -18,9 +18,12 @@ from event_app import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('index', views.index, name='index'),
     path('event_registration', views.eventreg, name='eventregister'),
+    path('host_login_page', views.host_login, name='host_login'),
     path('participant_registration', views.participantreg, name='participantregister'),
     path('event_creation', views.create_event, name='event_creation'),
     path('handle_create_participant/<str:Event_Name>', views.create_participant_page, name="handle_create_participant"),
-    path('participant_creation', views.create_participant, name='create participant'),
+    path('participant_creation', views.create_participant, name='create_participant'),
+    path('FindEvent', views.find_participant, name='find_participant'),
 ]

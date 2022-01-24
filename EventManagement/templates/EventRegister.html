@@ -9,25 +9,25 @@
         {% csrf_token %}
 
         <label> Event Name: </label>
-        <input type="text" name="Ename"><br>
+        <input type="text" name="Ename" required><br>
 
         <label> Event Description: </label>
-        <input type="text" name="Edesc"> <br>
+        <input type="text" name="Edesc" required> <br>
 
         <label> Event Start: </label>
-        <input type="datetime-local" name="Estart"> <br>
+        <input type="datetime-local" name="Estart" required> <br>
 
         <label> Event End: </label>
-        <input type="datetime-local" name="Eend"> <br>
+        <input type="datetime-local" name="Eend" required> <br>
 
         <label> Registration Deadline: </label>
-        <input type="datetime-local" name="ERegdead"> <br>
+        <input type="datetime-local" name="ERegdead" required> <br>
 
         <label> Host email: </label>
-        <input type="email" name="EHmail"> <br>
+        <input type="email" name="EHmail" required> <br>
 
         <label> Host Password: </label>
-        <input type="password" name="EHpwd"> <br>
+        <input type="password" name="EHpwd" required> <br>
 
         {#  <label> Event Poster: </label> #}
         {#<input type="file" name="Eposter" accept="/image"> <br>#}
