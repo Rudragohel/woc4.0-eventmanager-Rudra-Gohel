@@ -6,6 +6,11 @@ from django.template import loader
 from django.shortcuts import render
 
 from event_app.models import Event, Participant
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+from twilio.rest import Client
 
 
 def index(request):
@@ -82,6 +87,12 @@ def create_event(request):
 
     event.save()
 
+    mail_content = "Hello,\nYour Event '" + name + "' has been registered successfully.\nYour Event id is: " + str(
+        event.id)
+    subject = "Event Registered Successfully!!"
+
+    send_mail(Hemail, subject, mail_content)
+
     context = {
         "Rtype": "Event_Registration",
         "Bgcolor": "#afedd3",
@@ -116,9 +127,10 @@ def create_participant(request):
     Ptotal = request.POST.get("Pnum")
     Pcount = 1
 
-    if typr == 'G' and Ptotal == 1:
-        return render(request, 'CreateParticipant.html', {"isgroup": True})
-    else:
+    print("Ptotal: ", Ptotal)
+    print("Ptyper: ", typr)
+
+    if typr == 'G':
         Pcount = Ptotal
 
     context = {
@@ -159,6 +171,12 @@ def create_participant(request):
                               ParticipantEventName=Ename, ParticipantEvent=EventInstance, ParticipantEmail=rmail,
                               ParticipantCount=Pcount)
     participant.save()
+
+    message = "Hello\nYour Registration for event '"+str(Ename)+"' is done successfully.\n Your Participant id is: " + str(
+        EventInstance.id)
+
+    send_sms(message, contact)
+
     context = {
         "Rtype": "Participant_Registration",
         "Bgcolor": "#afedd3",
@@ -184,7 +202,55 @@ def find_participant(request):
     template = loader.get_template('DisplayEvent.html')
     name = request.POST.get("EId")
     password = request.POST.get("Hpassword")
+
+    try:
+        EventInstance = Event.objects.get(EventName=name)
+    except:
+        template = loader.get_template('HostLogIn.html')
+        context = {
+            "LoginFail": True,
+        }
+        return HttpResponse(template.render(context, request))
+
+    ParticipantsOfThisEvent = Participant.objects.filter(ParticipantEventName=name)
+
+    for i in ParticipantsOfThisEvent:
+        print(i)
+
     context = {
-        "Event": name
+        "Event": name,
+        "participants": ParticipantsOfThisEvent
     }
     return HttpResponse(template.render(context, request))
+
+
+def send_mail(receiver_address, subject, mail_content):
+    sender_address = '' #add sender's email address here
+    sender_pass = ''  #add sender's passsword address here
+
+    message = MIMEMultipart()
+    message['From'] = sender_address
+    message['To'] = receiver_address
+    message['Subject'] = subject
+
+    message.attach(MIMEText(mail_content, 'plain'))
+
+    session = smtplib.SMTP('smtp.gmail.com', 587)
+    session.starttls()
+    session.login(sender_address, sender_pass)
+    text = message.as_string()
+    session.sendmail(sender_address, receiver_address, text)
+    session.quit()
+
+
+def send_sms(message, reciever_number):
+    account_sid = '' #add account_sid here
+    auth_token = ''  #add auth_token here
+
+    client = Client(account_sid, auth_token)
+
+    message = client.messages.create(
+        from_='', #add sender's number here
+        body=message,
+        to=str(reciever_number)
+    )

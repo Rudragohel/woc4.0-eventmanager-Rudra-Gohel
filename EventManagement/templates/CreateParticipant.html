@@ -14,23 +14,23 @@
         <input readonly type="text" name = "PEName" value="{{ InEvent }}"><br>
 
         <label> Participant Name: </label>
-        <input type="text" name="Pname"> <br>
+        <input type="text" name="Pname" required> <br>
 
         <label> Contact Number: </label>
-        <input type="tel" maxlength="10" name="Pcontact"> <br>
+        <input type="tel" maxlength="10" name="Pcontact" required> <br>
 
         <label> Email: </label>
-        <input type="email" name="Pmail"> <br>
+        <input type="email" name="Pmail" required> <br>
         <label>
             Registration Type: <br>
         </label>
-        <input type="radio" name="RegType" >
+        <input type="radio" name="RegType" value="I">
         <label> Individual</label> <br>
 
-        <input type="radio" name="RegType" onclick="document.getElementById('Ginput').style.visibility='visible'">
+        <input type="radio" name="RegType" min="2" onclick="document.getElementById('Ginput').style.visibility='visible'" value="G">
         <label> Group</label> <br>
 
-        <input type = "number" id="Ginput" name="Pnum" style="visibility: hidden" value="1"><br>
+        <input type = "number" id="Ginput" name="Pnum" style="visibility: hidden" min="2"><br>
         <input type="submit">
 
     </form>
