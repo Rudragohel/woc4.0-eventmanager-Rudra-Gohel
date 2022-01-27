@@ -10,10 +10,10 @@
         <form action="FindEvent" method="POST">
             {% csrf_token %}
             <label>Enter Event Id: </label>
-            <input type="text" name="EId">
+            <input type="text" name="EId" required>
             <br>
             <label>Enter Host Password</label>
-            <input type="password" name="Hpassword">
+            <input type="password" name="Hpassword" required>
             <br>
             <input type="submit">
         </form>

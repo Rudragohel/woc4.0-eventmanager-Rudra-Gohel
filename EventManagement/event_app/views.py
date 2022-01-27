@@ -85,13 +85,13 @@ def create_event(request):
     event = Event(EventName=name, EventDescription=desc, EventFrom=start, EventTo=end, EventRegDeadline=deadline,
                   EventHostEmail=Hemail, EventHostPwd=Hpwd)
 
-    event.save()
-
     mail_content = "Hello,\nYour Event '" + name + "' has been registered successfully.\nYour Event id is: " + str(
-        event.id)
+        event.id) + "You can use this ID to view participant registrations in 'Dashboard' section of the website."
     subject = "Event Registered Successfully!!"
 
     send_mail(Hemail, subject, mail_content)
+
+    event.save()
 
     context = {
         "Rtype": "Event_Registration",
@@ -170,12 +170,17 @@ def create_participant(request):
     participant = Participant(ParticipantName=name, ParticipantContact=contact, ParticipantEventID=EventID,
                               ParticipantEventName=Ename, ParticipantEvent=EventInstance, ParticipantEmail=rmail,
                               ParticipantCount=Pcount)
-    participant.save()
 
-    message = "Hello\nYour Registration for event '"+str(Ename)+"' is done successfully.\n Your Participant id is: " + str(
+    message = "Hello\nYour Registration for event '" + Ename + "' is done successfully.\nYour Participant id is: " + str(
         EventInstance.id)
 
+    subject = "About Registration in Event: " + Ename
+
     send_sms(message, contact)
+
+    send_mail(rmail, subject, message)
+
+    participant.save()
 
     context = {
         "Rtype": "Participant_Registration",
@@ -200,11 +205,19 @@ def host_login(request):
 
 def find_participant(request):
     template = loader.get_template('DisplayEvent.html')
-    name = request.POST.get("EId")
+    EID = request.POST.get("EId")
     password = request.POST.get("Hpassword")
 
     try:
-        EventInstance = Event.objects.get(EventName=name)
+        EventInstance = Event.objects.get(id=EID)
+        if EventInstance.EventHostPwd != password:
+            template = loader.get_template('HostLogIn.html')
+            context = {
+                "LoginFail": True,
+            }
+            return HttpResponse(template.render(context, request))
+
+
     except:
         template = loader.get_template('HostLogIn.html')
         context = {
@@ -212,21 +225,25 @@ def find_participant(request):
         }
         return HttpResponse(template.render(context, request))
 
-    ParticipantsOfThisEvent = Participant.objects.filter(ParticipantEventName=name)
+    ParticipantsOfThisEvent = Participant.objects.filter(ParticipantEvent=int(EID))
 
-    for i in ParticipantsOfThisEvent:
-        print(i)
+    ZeroRegistration = False
+
+    print("Number of Participants: ", len(ParticipantsOfThisEvent))
+    if len(ParticipantsOfThisEvent) == 0:
+        ZeroRegistration = True
 
     context = {
-        "Event": name,
-        "participants": ParticipantsOfThisEvent
+        "Event": Event.objects.get(id=EID).EventName,
+        "participants": ParticipantsOfThisEvent,
+        "isEmpty": ZeroRegistration
     }
     return HttpResponse(template.render(context, request))
 
 
 def send_mail(receiver_address, subject, mail_content):
-    sender_address = '' #add sender's email address here
-    sender_pass = ''  #add sender's passsword address here
+    sender_address = ''  # add sender's email address here
+    sender_pass = ''  # add sender's passsword address here
 
     message = MIMEMultipart()
     message['From'] = sender_address
@@ -244,13 +261,13 @@ def send_mail(receiver_address, subject, mail_content):
 
 
 def send_sms(message, reciever_number):
-    account_sid = '' #add account_sid here
-    auth_token = ''  #add auth_token here
+    account_sid = ''  # add account_sid here
+    auth_token = ''  # add auth_token here
 
     client = Client(account_sid, auth_token)
 
     message = client.messages.create(
-        from_='', #add sender's number here
+        from_='',  # add sender's number here
         body=message,
         to=str(reciever_number)
     )

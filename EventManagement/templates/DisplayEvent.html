@@ -8,32 +8,36 @@
 {% endblock %}
 
 {% block content %}
-    <h1> Displaying Details</h1>
-    <br><br>
-    <div align="center">
-        <table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Contact</th>
-            <th>Email</th>
-            <th>Participant type</th>
-            <th>Participation Count</th>
-        </tr>
-        {% for participant in participants %}
+    {% if isEmpty %}
+        <h1>No Registrations Yet...</h1>
+    {% else %}
+        <h1> <u>Registrations</u></h1>
+        <br><br>
+        <div align="center">
+            <table>
             <tr>
-                <td> {{ participant.id }}</td>
-                <td> {{ participant.ParticipantName }}</td>
-                <td> {{ participant.ParticipantContact }}</td>
-                <td> {{ participant.ParticipantEmail }}</td>
-                {% if participant.ParticipantCount == 1 %}
-                    <td> Individual</td>
-                {% else %}
-                    <td> Group </td>
-                {%  endif%}
-                <td> {{ participant.ParticipantCount }}</td>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Participant type</th>
+                <th>Participation Count</th>
             </tr>
-        {% endfor %}
-        </table>
-    </div>
+            {% for participant in participants %}
+                <tr>
+                    <td> {{ participant.id }}</td>
+                    <td> {{ participant.ParticipantName }}</td>
+                    <td> {{ participant.ParticipantContact }}</td>
+                    <td> {{ participant.ParticipantEmail }}</td>
+                    {% if participant.ParticipantCount == 1 %}
+                        <td> Individual</td>
+                    {% else %}
+                        <td> Group </td>
+                    {%  endif%}
+                    <td> {{ participant.ParticipantCount }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+    {% endif %}
 {% endblock %}
