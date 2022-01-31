@@ -56,7 +56,7 @@ def create_event(request):
     deadline = request.POST.get("ERegdead")
     Hemail = request.POST.get("EHmail")
     Hpwd = request.POST.get("EHpwd")
-
+    venue = request.POST.get("Evenue")
     context = {
         "Rtype": "Event_Registration",
         "Bgcolor": "#e6a8a8",
@@ -83,7 +83,7 @@ def create_event(request):
         pass
 
     event = Event(EventName=name, EventDescription=desc, EventFrom=start, EventTo=end, EventRegDeadline=deadline,
-                  EventHostEmail=Hemail, EventHostPwd=Hpwd)
+                  EventHostEmail=Hemail, EventHostPwd=Hpwd, EventVenue=venue)
     event.save()
 
     mail_content = "Hello,\nYour Event '" + name + "' has been registered successfully.\nYour Event id is: " + str(
@@ -172,12 +172,12 @@ def create_participant(request):
 
     participant.save()
 
-    message = "Hello\nYour Registration for event '" + Ename + "' is done successfully.\nYour Participant id is: " + str(
-        participant.id)
+    message = "\n\n\n\nHello,\nYour Registration for event '" + Ename + "' is done successfully.\nYour Participant id is: " + str(
+        participant.id) + "\nEvent Start:" + EventInstance.EventFrom.strftime("%m/%d/%Y, %H:%M:%S") + ".\n" + "Event End:" + EventInstance.EventTo.strftime("%m/%d/%Y, %H:%M:%S")+ ".\n" + "Event Venue:" + EventInstance.EventVenue + ".\n"
 
     subject = "About Registration in Event: " + Ename
 
-    # send_sms(message, contact)
+    send_sms(message, contact)
 
     send_mail(rmail, subject, message)
 

@@ -30,7 +30,8 @@
                 <p class="upcoming_event_desc">{{ event.EventDescription }} </p><br>
                 <div class="upcoming_event_details">
                     <div class="upcoming_event_detail"> Event Starts: </div>{{ event.EventFrom }}  <br>
-                    <div class="upcoming_event_detail"> Event Ends: </div>{{ event.EventTo }}
+                    <div class="upcoming_event_detail"> Event Ends: </div>{{ event.EventTo }}<br>
+                    <div class="upcoming_event_detail"> Event Venue: </div>{{ event.EventVenue }}
                 </div>
                 <a href="{% url 'handle_create_participant' event.EventName %}">
                     <button id="upcoming_event_reg_btn">Register</button>

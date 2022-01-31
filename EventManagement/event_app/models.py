@@ -11,6 +11,7 @@ class Event(models.Model):
     # EventPoster = models.ImageField(default='poster.jpg')
     EventHostEmail = models.EmailField(default="", max_length=254)
     EventHostPwd = models.CharField(default="", max_length=70)
+    EventVenue = models.CharField(default="", max_length=70)
 
     def __str__(self):
         return self.EventName
