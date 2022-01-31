@@ -2,22 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% load static %}
+    <link href="{% static '/style.css' %}" rel="stylesheet">
+    <link rel="icon" href="data:,">
     <title>Event Management</title>
 </head>
-<body>
-    <div style="text-align: center;">
-        <h1>
-            Event Management WebApp
-        </h1>
-        <button type="index_page" onclick="location.href='event_registration'">
-            Event Registration
-        </button>
-        <button type="index_page" onclick="location.href='participant_registration'">
-            Participant Registration
-        </button>
-        <button type="index_page" onclick="location.href='host_login_page'">
-            Event Dashboard
-        </button>
+<body id="index_background">
+
+    <div id="primary_div">
+        <div  id="index_heading">
+                Event Management WebApp
+        </div>
+        <div id = "index_button_div">
+            <button  onclick="location.href='event_registration'" id="index_btn1" class="index_button">
+                Event Registration
+            </button>
+            <button  onclick="location.href='participant_registration'" id="index_btn2" class="index_button">
+                Participant Registration
+            </button>
+            <button  onclick="location.href='host_login_page'" id="index_btn3" class="index_button">
+                Event Dashboard
+            </button>
+        </div>
     </div>
 
 </body>

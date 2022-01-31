@@ -84,14 +84,13 @@ def create_event(request):
 
     event = Event(EventName=name, EventDescription=desc, EventFrom=start, EventTo=end, EventRegDeadline=deadline,
                   EventHostEmail=Hemail, EventHostPwd=Hpwd)
+    event.save()
 
     mail_content = "Hello,\nYour Event '" + name + "' has been registered successfully.\nYour Event id is: " + str(
-        event.id) + "You can use this ID to view participant registrations in 'Dashboard' section of the website."
+        event.id) + "\nYou can use this ID to view participant registrations in 'Dashboard' section of the website."
     subject = "Event Registered Successfully!!"
 
     send_mail(Hemail, subject, mail_content)
-
-    event.save()
 
     context = {
         "Rtype": "Event_Registration",
@@ -171,16 +170,16 @@ def create_participant(request):
                               ParticipantEventName=Ename, ParticipantEvent=EventInstance, ParticipantEmail=rmail,
                               ParticipantCount=Pcount)
 
+    participant.save()
+
     message = "Hello\nYour Registration for event '" + Ename + "' is done successfully.\nYour Participant id is: " + str(
-        EventInstance.id)
+        participant.id)
 
     subject = "About Registration in Event: " + Ename
 
-    send_sms(message, contact)
+    # send_sms(message, contact)
 
     send_mail(rmail, subject, message)
-
-    participant.save()
 
     context = {
         "Rtype": "Participant_Registration",

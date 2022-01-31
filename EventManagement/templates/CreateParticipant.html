@@ -4,34 +4,61 @@
     {{ InEvent }}
 {% endblock %}
 
+{% block heading %}
+    <div id="base_heading_participant">
+        Participation Registration Form
+    </div>
+{% endblock %}
+
 {%block content %}
-    <h1> Welcome to "{{ InEvent }}" Registration </h1>
+    <div>
+        <button class="back_btn"  onclick="location.href='/participant_registration'">Back</button>
+    </div>
+
+    <div id="create_participant_base_content">
 
      <form action="/participant_creation" method="POST">
         {% csrf_token %}
 
-        <label> Event Name: </label>
-        <input readonly type="text" name = "PEName" value="{{ InEvent }}"><br>
+        <div class="standard_form_input">
+            <label class="create_participant_form_label"> Event Name: </label>
+            <input readonly type="text" name = "PEName" value="{{ InEvent }}"><br>
+        </div>
 
-        <label> Participant Name: </label>
-        <input type="text" name="Pname" required> <br>
+        <div class="standard_form_input">
+            <label class="create_participant_form_label"> Participant Name: </label>
+            <input type="text" name="Pname" required> <br>
+        </div>
 
-        <label> Contact Number: </label>
-        <input type="tel" maxlength="10" name="Pcontact" required> <br>
+         <div class="standard_form_input">
+            <label class="create_participant_form_label"> Contact Number: </label>
+            <input type="tel" maxlength="10" name="Pcontact" required> <br>
+        </div>
 
-        <label> Email: </label>
-        <input type="email" name="Pmail" required> <br>
-        <label>
-            Registration Type: <br>
-        </label>
-        <input type="radio" name="RegType" value="I">
-        <label> Individual</label> <br>
+         <div class="standard_form_input">
+            <label class="create_participant_form_label"> Email: </label>
+            <input type="email" name="Pmail" required> <br>
+        </div>
 
-        <input type="radio" name="RegType" min="2" onclick="document.getElementById('Ginput').style.visibility='visible'" value="G">
-        <label> Group</label> <br>
+         <div class="standard_form_input">
+            <label class="create_participant_form_label">Registration Type: </label>
+            <input type="radio" name="RegType" value="I" onclick="document.getElementById('Ginput').style.visibility='hidden'"checked>
+            <label class="form_label"> Individual</label><br>
+             <label class="create_participant_form_label"></label>
+            <input type="radio" name="RegType"  onclick="document.getElementById('Ginput').style.visibility='visible'" value="G">
+            <label> Group</label><br>
+        </div>
 
-        <input type = "number" id="Ginput" name="Pnum" style="visibility: hidden" min="2"><br>
-        <input type="submit">
+        <div class="standard_form_input" id="Ginput">
+            <label class="create_participant_form_label">Participant count</label>
+            <input type = "number"  name="Pnum"  min="2">
+        </div>
+
+         <div class="submit_btn_div">
+             <input id = "participant_submit_btn" type="submit">
+        </div>
+
 
     </form>
+    </div>
 {% endblock %}

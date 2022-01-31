@@ -4,36 +4,64 @@
     Event Registration
 {% endblock %}
 
+{% block heading %}
+    <div id="base_heading">
+        Event Registration Form
+    </div>
+{% endblock %}
+
 {% block content%}
+    <div>
+        <button class="back_btn"  onclick="location.href='index'">Back</button>
+    </div>
+
+    <div id="base_content">
+
     <form action="event_creation" method="POST">
         {% csrf_token %}
 
-        <label> Event Name: </label>
-        <input type="text" name="Ename" required><br>
+        <div class="standard_form_input">
+            <label class="form_label"> Event Name: </label>
+            <input type="text" class="form_text" name="Ename" required><br>
+        </div>
 
-        <label> Event Description: </label>
-        <input type="text" name="Edesc" required> <br>
+        <div class="standard_form_input" >
+            <label class="form_label" > Event Description: </label>
+            <textarea name="Edesc" cols="50" rows="8"></textarea><br>
+        </div>
 
-        <label> Event Start: </label>
-        <input type="datetime-local" name="Estart" required> <br>
+        <div class="standard_form_input">
+            <label class="form_label"> Event Start: </label>
+            <input type="datetime-local" name="Estart" required> <br>
+        </div>
 
-        <label> Event End: </label>
-        <input type="datetime-local" name="Eend" required> <br>
+        <div class="standard_form_input">
+            <label class="form_label"> Event End: </label>
+            <input type="datetime-local" name="Eend" required> <br>
 
-        <label> Registration Deadline: </label>
-        <input type="datetime-local" name="ERegdead" required> <br>
+        </div>
 
-        <label> Host email: </label>
-        <input type="email" name="EHmail" required> <br>
+        <div class="standard_form_input">
+            <label class="form_label"> Registration Deadline: </label>
+            <input type="datetime-local" name="ERegdead" required> <br>
+        </div>
 
-        <label> Host Password: </label>
-        <input type="password" name="EHpwd" required> <br>
+        <div class="standard_form_input">
+            <label class="form_label"> Host E-mail: </label>
+            <input type="email" name="EHmail" required> <br>
+        </div>
 
+        <div class="standard_form_input">
+            <label class="form_label"> Host Password: </label>
+            <input type="password" name="EHpwd" required> <br>
+        </div>
         {#  <label> Event Poster: </label> #}
         {#<input type="file" name="Eposter" accept="/image"> <br>#}
-
-        <input type="submit">
-
+        <div class="submit_btn_div">
+            <input type="submit" id="event_submit_btn">
+        </div>
 
     </form>
+    </div>
 {% endblock %}
+

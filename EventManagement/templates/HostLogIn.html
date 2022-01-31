@@ -4,21 +4,41 @@
     Host Dashboard
 {% endblock %}
 
+{% block heading %}
+    <div id="base_heading_participant">
+        Host Dashboard Login
+    </div>
+{% endblock %}
+
 {%block content %}
-    <h1> Welcome To Host Dashboard </h1>
     <div>
+        <button class="back_btn"  onclick="location.href='index'">Back</button>
+    </div>
+
+    <div id="host_login_content">
         <form action="FindEvent" method="POST">
             {% csrf_token %}
-            <label>Enter Event Id: </label>
-            <input type="text" name="EId" required>
-            <br>
-            <label>Enter Host Password</label>
-            <input type="password" name="Hpassword" required>
-            <br>
-            <input type="submit">
+
+            <div class="HostLogin_form_input">
+                <label class="host_form_label">Enter Event Id: </label>
+                <input type="text" name="EId" required>
+            </div>
+
+            <div class="HostLogin_form_input">
+                <label class="host_form_label">Enter Host Password</label>
+                <input type="password" name="Hpassword" required>
+            </div>
+
+         <div class="submit_btn_div">
+             <button id = "host_submit_btn" type="submit">submit</button>
+        </div>
+        <br>
         </form>
     </div>
+
     {% if LoginFail %}
+       <div id="login_again">
         ID or Password is incorrect.
+       </div>
     {% endif %}
 {% endblock %}

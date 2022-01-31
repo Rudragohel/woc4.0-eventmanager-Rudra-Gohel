@@ -3,22 +3,42 @@
 {% block title %}
     Participant Registration
 {% endblock %}
+{% block heading %}
+    {% if size %}
+        <div id="base_heading">
+            Upcoming Events
+        </div>
+    {% else %}
+        <div id="base_heading">
+            No Upcoming Events...
+        </div>
+    {% endif %}
 
+{% endblock %}
 {% block content%}
 
+    <div>
+        <button class="back_btn"  onclick="location.href='index'">Back</button>
+    </div>
+
     {% if size %}
+    <div id="upcoming_event_content">
+
         {% for event in Events %}
-            <div>
-                <h2> {{  event.EventName }} </h2>
-                {{ event.EventDescription }} <br>
-                Event Starts: {{ event.EventFrom }}  <br>
-                Event Ends: {{ event.EventTo }} <br>
+            <div id="event_info_div">
+                <p class="upcoming_event_name"> {{  event.EventName }} </p>
+                <p class="upcoming_event_desc">{{ event.EventDescription }} </p><br>
+                <div class="upcoming_event_details">
+                    <div class="upcoming_event_detail"> Event Starts: </div>{{ event.EventFrom }}  <br>
+                    <div class="upcoming_event_detail"> Event Ends: </div>{{ event.EventTo }}
+                </div>
                 <a href="{% url 'handle_create_participant' event.EventName %}">
-                    <button>Register</button>
+                    <button id="upcoming_event_reg_btn">Register</button>
                 </a>
             </div>
         {% endfor %}
-    {% else %}
-        <h2>No Upcoming Events</h2>
+    </div>
+
     {% endif %}
+
 {% endblock %}

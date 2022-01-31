@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     {% load static %}
     <link href="{% static '/style.css' %}" rel="stylesheet">
-
+    <link rel="icon" href="data:,">
     {% block head %} {% endblock %}
     <title>{% block title %} {% endblock %}</title>
 </head>
-<body>
-    <div style="text-align: center;" id="content">
-        {% block content %}
-        {% endblock %}
+<body id="base_back">
+    <div id="primary_base_div">
+            {% block heading %}
+            {% endblock %}
+        <br>
+            {% block content %}
+            {% endblock %}
     </div>
 </body>
 </html>

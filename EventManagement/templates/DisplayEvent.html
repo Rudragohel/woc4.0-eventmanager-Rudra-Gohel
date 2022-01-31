@@ -4,23 +4,34 @@
     {{ Event}}
 {% endblock %}
 
-{% block head %}
+{% block heading %}
+    <div id="base_heading">
+       {% if isEmpty %}
+            No Registrations Yet...
+       {% else %}
+            Registrations
+       {% endif %}
+    </div>
 {% endblock %}
 
 {% block content %}
+    <div>
+        <button class="back_btn"  onclick="location.href='/host_login_page'">Back</button>
+    </div>
+
+    <div id="table_content">
+
     {% if isEmpty %}
-        <h1>No Registrations Yet...</h1>
+
     {% else %}
-        <h1> <u>Registrations</u></h1>
-        <br><br>
-        <div align="center">
+        <div id ="participant_table" align="center">
             <table>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Contact</th>
                 <th>Email</th>
-                <th>Participant type</th>
+                <th>Participant Type</th>
                 <th>Participation Count</th>
             </tr>
             {% for participant in participants %}
@@ -40,4 +51,5 @@
             </table>
         </div>
     {% endif %}
+    </div>
 {% endblock %}

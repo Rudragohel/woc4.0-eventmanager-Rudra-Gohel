@@ -1,6 +1,297 @@
 table, th, td {
-  border:1px solid black;
+  border:2px solid black;
   text-align: center;
   padding: 5px;
+
 }
 
+#index_background{
+  background-color: #21568d;
+}
+
+#primary_div{
+  position: relative;
+  top: 25px;
+  background-color: #8cb7e1;
+  height: 600px;
+  text-align: center;
+}
+
+#index_heading{
+  display: inline-block;
+  position: relative;
+  top:10%;
+  text-align: center;
+  width: 50%;
+  height: 10%;
+  background-color: #abc9e7;
+  color: #173c64;
+  padding: 30px 0;
+  border: 2px solid darkblue;
+}
+
+#index_heading{
+  font-size: 50px;
+}
+
+.index_button {
+    position: relative;
+    height: 50px;
+    width: 30%  ;
+    color: #002952;
+    font-size: 20px;
+}
+
+#index_button_div{
+  display: inline-block;
+  position: relative;
+  width: 66%;
+  top: 30%;
+}
+
+#base_back{
+  background-color: #21568d;
+}
+
+#index_btn1{
+  float: left;
+}
+
+#index_btn3{
+  float: right;
+}
+
+#primary_base_div{
+  position: relative;
+  top: 25px;
+  background-color: #8cb7e1;
+  height: auto;
+  padding-top: 2% ;
+  padding-bottom: 5%;
+  text-align: center;
+}
+
+#base_heading{
+  display: inline-block;
+  font-size: 30px;
+  position: relative;
+  margin-top:.5%;
+  margin-bottom: 2%;
+  text-align: center;
+  width: 25%;
+  height: 10%;
+  background-color: #abc9e7;
+  color: #173c64;
+  padding: .5% 0;
+  border: 2px solid darkblue;
+}
+
+#base_content{
+  display: inline-block;
+  border: 2px solid darkblue;
+  padding: 1%;
+  background-color: #abc9e7;
+  width: 45%;
+  text-align: left;
+  font-size: 20px;
+  color: #033062;
+}
+
+.standard_form_input{
+  margin: 2%;
+}
+
+.form_label{
+  display: inline-block;
+  width: 30%;
+  margin-right: 10px;
+}
+
+
+.create_participant_form_label{
+  display: inline-block;
+  width: 50%;
+  margin-right: 10px;
+}
+
+#event_submit_btn{
+  align-self: center;
+  padding: 0.3%;
+  margin-top: 2%;
+  margin-left: 40%;
+  height: 10%;
+  width: 15%  ;
+  color: #002952;
+  font-size: 15px;
+}
+
+#upcoming_event_div{
+  border: 2px solid darkblue;
+
+}
+
+#base_heading_participant{
+  display: inline-block;
+  font-size: 30px;
+  position: relative;
+  margin-top:.5%;
+  margin-bottom: 2%;
+  text-align: center;
+  width: 35%;
+  height: 10%;
+  background-color: #abc9e7;
+  color: #173c64;
+  padding: .5% 0;
+  border: 2px solid darkblue;
+}
+
+#Ginput{
+  visibility: hidden;
+}
+
+#participant_submit_btn{
+  align-self: center;
+  padding: 0.3%;
+  margin-top: 2%;
+  margin-left: 40%;
+  height: 10%;
+  width: 15%  ;
+  color: #002952;
+  font-size: 15px;
+}
+
+#host_submit_btn{
+  padding: 0.3%;
+  margin-top: 8%;
+  margin-left: 35%;
+  height: 10%;
+  width: 15%  ;
+  color: #002952;
+  font-size: 15px;
+}
+
+#host_login_content{
+  display: inline-block;
+  border: 2px solid darkblue;
+
+  padding-top: 3%;
+  padding-left: 5% ;
+  background-color: #abc9e7;
+  width: 35%;
+  text-align: left;
+  font-size: 20px;
+  color: #173c64;
+}
+
+.HostLogin_form_input{
+  margin: 1%;
+}
+
+.host_form_label{
+  display: inline-block;
+  width: 40%;
+  margin-right: 10px;
+}
+
+#login_again{
+  background-color: rgb(217, 167, 167);
+  padding-top: 0.5%;
+  margin-top: 2%;
+  margin-left: 40%;
+  width: 20%;
+  height: 30px;
+  font-size: 20px ;
+  color: rgb(110, 4, 2);
+  border: 3px solid rgb(150, 3, 0);
+
+}
+
+#upcoming_event_content{
+  display: inline-block;
+  border: 2px solid darkblue;
+  padding: 1%;
+  background-color: #abc9e7;
+  width: 50%;
+  text-align: left;
+  font-size: 20px;
+  color: #173c64;
+}
+
+#event_info_div{
+  margin-bottom: 2%;
+  width: 100%;
+  border: 1px solid rgb(42, 4, 114);
+  background-color: #c5d9ee;
+}
+
+.upcoming_event_name{
+  font-weight: bold;
+  margin-left: 42%;
+  color: #01274d;
+  font-size: 25px;
+}
+
+.upcoming_event_desc{
+  width: 90%;
+  margin-left: 5%;
+  text-align: center;
+}
+
+.upcoming_event_details{
+  width: 100%;
+  margin-left: 5%;
+}
+
+.upcoming_event_detail{
+  font-weight: bold;
+  margin-bottom: 2%;
+  display: inline-block;
+  width: 20%;
+}
+
+#upcoming_event_reg_btn{
+  align-self: center;
+  padding: 0.3%;
+  margin-top: 2%;
+  margin-left: 42%;
+  margin-bottom: 3%;
+  height: 10%;
+  width: 15%  ;
+  color: #002952;
+  font-size: 15px;
+}
+
+#table_content{
+  display: inline-block;
+  border: 2px solid darkblue;
+  padding: 1%;
+  margin-top: 2%;
+  background-color: #abc9e7;
+  width: 50%;
+  text-align: left;
+  font-size: 20px;
+  color: #173c64;
+}
+
+#participant_table{
+  font-size: 20px;
+  text-align: center;
+  color: #01274d;
+}
+
+.back_btn{
+  position: absolute;
+  top: 10px;
+  left: 10px
+}
+
+#create_participant_base_content{
+  display: inline-block;
+  border: 2px solid darkblue;
+  padding: 1%;
+  background-color: #abc9e7;
+  width: 30%;
+  text-align: left;
+  font-size: 20px;
+  color: #042f5e;
+}
